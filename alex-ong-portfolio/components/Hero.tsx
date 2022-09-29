@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundCircles from "./BackgroundCircles";
@@ -16,18 +17,30 @@ function Hero({}: Props) {
         text-center overflow-hidden"
     >
       <BackgroundCircles />
-      <img
-        src={HERO_IMG_URL}
-        className="relative rounded-full h-32 w-32 mx-auto"
-      />
-      <div>
-        <h2 className="text-sm uppercase text-gray-500 tracking-[15px]">
+      <img src={HERO_IMG_URL} className="relative rounded-full h-36 w-36 " />
+      <div className="z-20">
+        <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]">
           Software Engineer
         </h2>
-        <h1>
+        <h1 className="text-5xl lg:6xl font-semibold px-10">
           <span className="mr-2">{text}</span>
           <Cursor cursorColor="#F7AB0A"></Cursor>
         </h1>
+
+        <div className="pt-5">
+          <Link href="#about">
+            <button className="heroButton">About</button>
+          </Link>
+          <Link href="#experience">
+            <button className="heroButton">Experience</button>
+          </Link>
+          <Link href="#skills">
+            <button className="heroButton">Skills</button>
+          </Link>
+          <Link href="#projects">
+            <button className="heroButton">Projects</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
