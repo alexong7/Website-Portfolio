@@ -16,6 +16,12 @@ export default {
     },
 
     {
+      name: "backgroundInformation",
+      title: "BackgroundInformation",
+      type: "string",
+    },
+
+    {
       name: "heroImage",
       title: "Image",
       type: "image",

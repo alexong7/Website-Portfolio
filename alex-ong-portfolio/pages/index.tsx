@@ -1,15 +1,29 @@
-import type { NextPage } from "next";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import About from "../components/About";
 import Contact from "../components/Contact";
-import Experience from "../components/Experience";
+import WorkExperience from "../components/WorkExperience";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
+import { PageInfo, Skill, Project, Social, Experience } from "../typings";
+import { fetchPageInfo } from "../utils/fetchPageInfo";
+import { fetchExperiences } from "../utils/fetchExperiences";
+import { fetchSkills } from "../utils/fetchSkills";
+import { fetchProjects } from "../utils/fetchProjects";
+import { fetchSocials } from "../utils/fetchSocials";
 
-const Home: NextPage = () => {
+type Props = {
+  pageInfo: PageInfo;
+  experiences: Experience[];
+  skills: Skill[];
+  projects: Project[];
+  socials: Social[];
+};
+
+const Home = ({ pageInfo, experiences, skills, projects, socials }: Props) => {
   return (
     <div
       className="bg-[rgb(36,36,36)] text-white h-screen snap-y 
@@ -22,7 +36,7 @@ const Home: NextPage = () => {
       </Head>
 
       {/* Heaader */}
-      <Header />
+      <Header socials={socials} />
 
       {/* Hero */}
       <section id="hero" className="snap-start">
@@ -36,7 +50,7 @@ const Home: NextPage = () => {
 
       {/* Experience */}
       <section id="experience" className="snap-center">
-        <Experience />
+        <WorkExperience />
       </section>
 
       {/* Skills */}
@@ -73,3 +87,29 @@ const Home: NextPage = () => {
 export default Home;
 
 const FOOTER_LOGO = "https://i.postimg.cc/5NYCshyT/IG-16.jpg";
+
+// Incremental Static Regeneration
+//
+// If we want Per Request regeneration, switch to Server Side Rendering (SSR)
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const pageInfo: PageInfo = await fetchPageInfo();
+  const experiences: Experience[] = await fetchExperiences();
+  const skills: Skill[] = await fetchSkills();
+  const projects: Project[] = await fetchProjects();
+  const socials: Social[] = await fetchSocials();
+
+  return {
+    props: {
+      pageInfo,
+      experiences,
+      skills,
+      projects,
+      socials,
+    },
+    // Next.js will attempt to regenerate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    // This helps with caching the data
+    revalidate: 10,
+  };
+};
