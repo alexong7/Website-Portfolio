@@ -32,16 +32,14 @@ export default function Header({ socials }: Props) {
           duration: 1.5,
         }}
       >
-        <SocialIcon
-          url="https://www.linkedin.com/in/alexong1/"
-          bgColor="transparent"
-          fgColor="gray"
-        />
-        <SocialIcon
-          url="https://github.com/alexong7"
-          bgColor="transparent"
-          fgColor="gray"
-        />
+        {socials.map((social) => (
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            bgColor="transparent"
+            fgColor="gray"
+          />
+        ))}
       </motion.div>
 
       <Link href="#contact">
