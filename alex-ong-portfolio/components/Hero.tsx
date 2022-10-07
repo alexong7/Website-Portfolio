@@ -44,6 +44,9 @@ function Hero({ pageInfo }: Props) {
           <Link href="#projects">
             <button className="heroButton">Projects</button>
           </Link>
+          <Link href="#photography">
+            <button className="heroButton">Photography</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,10 +13,11 @@ function About({ pageInfo }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 2 }}
+      viewport={{ once: true }}
       className="h-screen flex flex-col relative text-center md:text-left 
     md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center "
     >
-      <h3 className="absolute ml-5 top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:ml-14">
+      <h3 className="absolute ml-3 top-20 md:top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:ml-14">
         About
       </h3>
 
@@ -48,7 +49,9 @@ function About({ pageInfo }: Props) {
           A <span className="underline decoration-[#F7AB0A]/40"> Little</span>{" "}
           Bit About Me
         </h4>
-        <p className="text-sm sm:text-md">{pageInfo?.backgroundInformation}</p>
+        <p className="text-[13px] sm:text-md sm:leading-7 leading-6">
+          {pageInfo?.backgroundInformation}
+        </p>
       </motion.div>
     </motion.div>
   );
