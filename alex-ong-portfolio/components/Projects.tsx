@@ -1,11 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Project } from "../typings";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type Props = {
+  projects: Project[];
+};
 
-const projects = [1, 2, 3, 4, 5];
-
-function Projects({}: Props) {
+function Projects({ projects }: Props) {
+  projects.reverse();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -16,7 +19,7 @@ function Projects({}: Props) {
     
     "
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3 className="absolute ml-5 top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Projects
       </h3>
 
@@ -25,35 +28,41 @@ function Projects({}: Props) {
         scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 scrollbar-thin
       "
       >
-        {projects.map((projects) => (
+        {projects.map((project) => (
           <div
-            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center
-          justify-center p-20 md:p-44 h-screen
+            key={project._id}
+            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-1 sm:space-y-5 items-center
+          justify-center p-10 md:p-44 h-screen xl:p-80
           "
           >
             <motion.img
-              initial={{ y: -300, opacity: 0 }}
+              initial={{ y: -100, opacity: 0 }}
               transition={{ duration: 1.2 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              src={CY_PNG}
-              className="sm:h-[200px] sm:w-[200px] xl:h-[500px] xl:w-[500px]"
+              src={urlFor(project.image).url()}
+              className="h-[125px] w-[125px] sm:h-[150px] sm:w-[150px] xl:h-[200px] xl:w-[200px] "
             />
             <div className="space-y-10 px-0">
               <h4
-                className="underline decoration-[#F7AB0A]/50 text-4xl tracking-[10px]
+                className="underline decoration-[#F7AB0A]/50 text-lg sm:text-2xl xl:text-4xl tracking-[10px]
               font-semibold text-center"
               >
-                CyRate
+                {project.title}
               </h4>
 
-              <p className="text-lg text-center md:text-left xl:text-xl">
-                Full stack web application Full stack web application Full stack
-                web application Full stack web application Full stack web
-                application Full stack web application Full stack web
-                application Full stack web application Full stack web
-                application Full stack web application Full stack web
-                application Full stack web application
+              <div className="flex justify-center space-x-5">
+                {project.technologies.map((technology) => (
+                  <img
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    className="h-10 w-10 xl:h-14 xl:w-14 object-cover z-20"
+                  />
+                ))}
+              </div>
+
+              <p className="text-sm md:text-md text-center xl:text-lg">
+                {project.summary}
               </p>
             </div>
           </div>

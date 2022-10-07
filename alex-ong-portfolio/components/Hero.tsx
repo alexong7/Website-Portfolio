@@ -1,13 +1,17 @@
 import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
+import { urlFor } from "../sanity";
+import { PageInfo } from "../typings";
 import BackgroundCircles from "./BackgroundCircles";
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function Hero({}: Props) {
+function Hero({ pageInfo }: Props) {
   const [text, count] = useTypewriter({
-    words: ["Hi, I'm Alex", "<Photographer />", "<Creator />"],
+    words: pageInfo.typewriterWords,
     loop: true,
     delaySpeed: 2000,
   });
@@ -19,15 +23,15 @@ function Hero({}: Props) {
       <BackgroundCircles />
       <img src={HERO_IMG_URL} className="relative rounded-full h-36 w-36 " />
       <div className="z-20">
-        <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]">
+        <h2 className="text-[10px]  tracking-[10px] sm:text-sm uppercase text-gray-500 pb-2 sm:tracking-[15px]">
           Software Engineer
         </h2>
-        <h1 className="text-5xl lg:6xl font-semibold px-10">
+        <h1 className="sm:text-5xl text-3xl lg:6xl font-semibold px-10">
           <span className="mr-2">{text}</span>
           <Cursor cursorColor="#F7AB0A"></Cursor>
         </h1>
 
-        <div className="pt-5">
+        <div className="pt-10 sm:pt-5">
           <Link href="#about">
             <button className="heroButton">About</button>
           </Link>

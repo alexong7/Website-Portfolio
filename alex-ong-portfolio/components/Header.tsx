@@ -12,8 +12,8 @@ export default function Header({ socials }: Props) {
   return (
     <header
       className="sticky top-0 flex items-start 
-        justify-between max-w-7xl mx-auto z-20
-        p-5
+        justify-between max-w-7xl mx-auto z-30
+        p-5 md:px-10 md:py-5
         "
     >
       <motion.div

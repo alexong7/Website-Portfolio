@@ -1,9 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { PageInfo } from "../typings";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function About({}: Props) {
+function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -12,14 +16,14 @@ function About({}: Props) {
       className="h-screen flex flex-col relative text-center md:text-left 
     md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center "
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:ml-14">
+      <h3 className="absolute ml-5 top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:ml-14">
         About
       </h3>
 
       <motion.img
-        src={HERO_IMG_URL}
+        src={urlFor(pageInfo?.profilePic).url()}
         initial={{
-          x: -300,
+          x: -150,
           opacity: 0,
         }}
         whileInView={{
@@ -30,25 +34,21 @@ function About({}: Props) {
           duration: 1,
         }}
         viewport={{ once: true }}
-        className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:h-95 md:w-64
-        xl:w-[500px] xl:h-[600px]
+        className="-mb-20 md:mb-0 flex-shrink-0 h-44 w-44 sm:w-56 sm:h-56 rounded-full object-cover md:rounded-lg md:h-95 md:w-64
+        xl:w-[400px] xl:h-[500px]
         "
       />
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 2 }}
-        className="space-y-10 px-0 md:px-10"
+        className="space-y-8 px-0 md:px-10"
       >
-        <h4 className="text-4xl font-semibold">
-          A <span className="underline decoration-[#F7AB0A]/40"> little</span>{" "}
-          bit about me :)
+        <h4 className="text-2xl sm:text-4xl font-semibold">
+          A <span className="underline decoration-[#F7AB0A]/40"> Little</span>{" "}
+          Bit About Me
         </h4>
-        <p>
-          I'm Alex! Current junior at Iowa State University with experience in
-          full-stack development. I'm a creator at heart. Through building clean
-          UI and capturing life's moments with my camera, I love to create.
-        </p>
+        <p className="text-sm sm:text-md">{pageInfo?.backgroundInformation}</p>
       </motion.div>
     </motion.div>
   );

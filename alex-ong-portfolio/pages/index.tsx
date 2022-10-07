@@ -8,12 +8,21 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
-import { PageInfo, Skill, Project, Social, Experience } from "../typings";
+import {
+  PageInfo,
+  Skill,
+  Project,
+  Social,
+  Experience,
+  Photography as Photos,
+} from "../typings";
 import { fetchPageInfo } from "../utils/fetchPageInfo";
 import { fetchExperiences } from "../utils/fetchExperiences";
 import { fetchSkills } from "../utils/fetchSkills";
 import { fetchProjects } from "../utils/fetchProjects";
 import { fetchSocials } from "../utils/fetchSocials";
+import { fetchPhotos } from "../utils/fetchPhotos";
+import Photography from "../components/Photography";
 
 type Props = {
   pageInfo: PageInfo;
@@ -21,9 +30,17 @@ type Props = {
   skills: Skill[];
   projects: Project[];
   socials: Social[];
+  photos: Photos;
 };
 
-const Home = ({ pageInfo, experiences, skills, projects, socials }: Props) => {
+const Home = ({
+  pageInfo,
+  experiences,
+  skills,
+  projects,
+  socials,
+  photos,
+}: Props) => {
   return (
     <div
       className="bg-[rgb(36,36,36)] text-white h-screen snap-y 
@@ -40,30 +57,33 @@ const Home = ({ pageInfo, experiences, skills, projects, socials }: Props) => {
 
       {/* Hero */}
       <section id="hero" className="snap-start">
-        <Hero />
+        <Hero pageInfo={pageInfo} />
       </section>
 
       {/* About */}
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo} />
       </section>
 
       {/* Experience */}
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experiences} />
       </section>
 
       {/* Skills */}
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills} />
       </section>
 
       {/* Projects */}
       <section id="projects" className="snap-center">
-        <Projects />
+        <Projects projects={projects} />
       </section>
 
       {/* Photography? */}
+      <section id="photography" className="snap-center">
+        <Photography photos={photos} />
+      </section>
 
       {/* Contact */}
       <section id="contact" className="snap-start">
@@ -97,6 +117,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const skills: Skill[] = await fetchSkills();
   const projects: Project[] = await fetchProjects();
   const socials: Social[] = await fetchSocials();
+  const photos: Photos = await fetchPhotos();
 
   return {
     props: {
@@ -105,6 +126,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       skills,
       projects,
       socials,
+      photos,
     },
     // Next.js will attempt to regenerate the page:
     // - When a request comes in

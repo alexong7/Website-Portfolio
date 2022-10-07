@@ -21,6 +21,7 @@ export interface PageInfo extends SanityBody {
   phoneNumber: string;
   role: string;
   profilePic: Image;
+  typewriterWords: string[]
 }
 
 export interface Skill extends SanityBody {
@@ -51,8 +52,13 @@ export interface Project extends SanityBody {
   _type: "project";
   title: string;
   image: Image;
-  sumamry: string;
+  summary: string;
   technologies: Technology[];
+}
+
+export interface Photography extends SanityBody {
+  _type: "photography";
+  photos: Image[]
 }
 
 interface Image {
