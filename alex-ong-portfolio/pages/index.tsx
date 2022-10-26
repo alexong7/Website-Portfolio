@@ -49,6 +49,10 @@ const Home = ({
     "
     >
       <Head>
+        <link
+          rel="shortcut icon"
+          href="https://logopond.com/logos/8714ce1853dbcfbaf924f82072edd652.png"
+        />
         <title>Alex Ong</title>
       </Head>
 

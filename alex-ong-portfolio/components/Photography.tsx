@@ -13,10 +13,10 @@ function Photography({ photos }: Props) {
       className="h-screen relative flex flex-col overflow-hidden items-center 
     text-left md:flex-row justify-center max-w-full mx-auto"
     >
-      <h3 className="absolute ml-5 top-24 lg:top-20 uppercase tracking-[15px] sm:tracking-[20px] text-gray-500 text-xl sm:text-2xl">
+      <h3 className="absolute top-24 lg:top-20 uppercase tracking-[15px] mr-[-15px] text-gray-500 text-xl sm:text-2xl">
         Photography
       </h3>
-      <h3 className="absolute top-32  lg:top-28 uppercase tracking-[3px] text-[#F7AB0A]/30 text-sm">
+      <h3 className="absolute top-32  lg:top-28 uppercase tracking-[3px] mr-[-3px] text-[#F7AB0A]/30 text-sm">
         My Personal Gallery
       </h3>
 
@@ -28,7 +28,7 @@ function Photography({ photos }: Props) {
           {photos.photos.map((photo, i) => (
             <img
               key={i}
-              className="snap-center h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] xl:h-[500px] xl:w-[500px]"
+              className="snap-center h-[350px] w-[300px] sm:h-[400px] sm:w-[400px] xl:h-[500px] xl:w-[500px]"
               src={urlFor(photo).url()}
             />
           ))}

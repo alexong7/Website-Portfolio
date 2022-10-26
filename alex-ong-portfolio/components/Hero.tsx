@@ -23,7 +23,7 @@ function Hero({ pageInfo }: Props) {
       <BackgroundCircles />
       <img src={HERO_IMG_URL} className="relative rounded-full h-36 w-36 " />
       <div className="z-20">
-        <h2 className="text-[10px]  tracking-[10px] sm:text-sm uppercase text-gray-500 pb-2 sm:tracking-[15px]">
+        <h2 className="text-[10px] tracking-[10px] sm:text-sm uppercase text-gray-500 pb-2 sm:tracking-[15px]">
           Software Engineer
         </h2>
         <h1 className="sm:text-5xl text-3xl lg:6xl font-semibold px-10">
